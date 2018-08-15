@@ -1,0 +1,2169 @@
+/*/////////////////////////////////////////////////////////////////*/
+
+/*  Вот так добавляються новые шрифты */
+@font-face {
+    font-family: 'PTSans Regular';
+    src: url(../fonts/PT_Sans-Web-Regular.ttf);
+    font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'PTSans Bold';
+    src: url(../fonts/PT_Sans-Web-Bold.ttf);
+    font-weight: 400;
+	font-style: normal;
+}
+/*/////////////////////////////////////////////////////////////////*/
+
+/*  Основные настройки */
+.workZone{
+	width: 1370px;  /* ширина рабочей зоны, до которой всё обрезаеться */
+	margin: 0 auto;
+}
+body{
+	max-width: 1920px; /* что бы не было белого екрана */
+	min-width: 320px;  /* что бы на крошечных екранах всё отображалось также, как и при ширине в 320 пикселей  */
+	margin: 0 auto;
+	overflow-x:hidden; 
+}
+
+/*/////////////////////////////////////////////////////////////////*/
+
+					/*  Основные настройки */
+
+/*///////////////////////// ШАПКА САЙТА //////////////////////////*/
+.header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+.main_logotip{
+	background: url(../img/logotip.png) no-repeat center center;
+	background-size: contain;
+	width: 10.8%;
+    margin: 0 0 0 1.5%;
+}
+.logopadding{
+	padding-bottom: 60%;
+}
+.navbar{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 45%;
+}
+.navbar li a{
+	font-family: 'PTSans Regular', sans-serif;
+	font-size: 17px;
+	line-height: 16px;
+	color: #303030;
+	transition: color .3s;
+	text-decoration: none;
+}
+.navbar li a:hover{
+	color: #dd066d;
+}
+
+
+
+
+.gamburger{
+	width: 6%;
+	margin: 1% 1% 0 0;
+	cursor: pointer;
+	display: none;
+	z-index: 99999999;
+	position: relative;
+}
+.burger{
+	width: 100%;
+	cursor: pointer;
+	z-index: 99999999;
+	position: relative;
+}
+.burger_line{
+	width: 100%;
+	padding-bottom: 6px;
+	background: #dd066d;
+	border-radius: 20px;
+	margin-bottom: 5px;
+}
+.not_line{
+	position: absolute;
+	top: -130%;
+	left: 0;
+	width: 100%;
+	padding-bottom: 100%;
+	z-index: 9999999999999;
+	background: rgba(255, 255, 255, 0.1);
+	display: none;
+}
+.uno, .dos, .tres{
+    transition: opacity .3s ease-in-out;
+    transition: transform .1s ease-in-out;
+    transition: top .1s ease-in-out;
+    position: relative;
+}
+.dos{
+	top: 5%;
+}
+.substrate{
+	background-color: rgba(255, 255, 255, 0.95);
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1000;
+	display: none;
+}
+.concealed_menu{
+	background: #290801;
+	border: 3px solid #fff;
+
+	max-height: 250px;
+	min-height: 250px;
+	min-width: 400px;
+	max-width: 400px;
+	overflow-y: auto;
+	position: fixed;
+	overflow: hidden;
+	z-index: 2000;
+	width: 44%;
+}
+.concealed_navbar{	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 5% 0;
+}
+.concealed_navbar li{
+    list-style-type: none;
+    position: relative;
+    margin-bottom: 0%;
+    width: 56%;
+    text-align: center;
+    padding: 2% 0;
+}
+.concealed_navbar li a{
+	text-decoration: none;
+	display: block;
+	font-size: 18px;
+	line-height: 23px;
+	font-family: 'Open Sans', sans-serif;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #dd066d;	
+	transition: color .3s;
+}
+.concealed_navbar li a:hover{
+	color: black;
+	text-shadow: 2px 2px 2px #fff;
+}
+.concealed_navbar{
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*/////////////////////// КАРУСЕЛЬКА //////////////////////////*/
+.slider{
+	width: 100%;
+	border-top: 3px solid #dd066d;
+	border-bottom: 3px solid #dd066d;
+	position: relative;
+	overflow-x: hidden;
+}
+.big_wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+	left: 0;
+	transition: left 1s;
+}
+.little_wrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+}
+
+.slider_segment {
+	user-select: none;
+}
+
+/*
+	.slider_segment{    делаем курсор в виде розжатой руки 
+	    cursor: grab;
+	    cursor: -moz-grab;
+	    cursor: -webkit-grab;
+	}
+	.slider_segment:active{ /* делаем курсор в виде зажатой руки (кулака)
+		cursor: grabbing;
+	    cursor: -moz-grabbing;
+	    cursor: -webkit-grabbing;
+	}
+*/
+
+.arrow_right, .arrow_left{
+	background: url(../img/arrow.png) no-repeat center center;
+	background-size: contain;
+	width: 5%;
+	padding-bottom: 5%;
+	cursor: pointer;
+	position: absolute;
+	top: 40%;
+	left: 92%;
+	z-index: 2;
+}
+.arrow_right:hover, .arrow_left:hover{
+	 box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.arrow_left{
+	transform: rotate(180deg);
+	left: 4%;
+}
+.slider_points{
+	position: absolute;
+	bottom: 3%;
+	left: 50.5%;
+	transform: translateX(-50%);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.circle{
+	padding: 8px;
+}
+.sphere{
+	width: 12px;
+	padding-bottom: 12px;
+	border-radius: 50%;
+	background: #DE0065;
+	cursor: pointer;
+}
+.active_sphere{
+	box-shadow: 0 0 3px 3px #f4b4cf;
+}
+
+
+/*/////////////////// КАТАЛОГ КУРСОВ ///////////////////////*/
+.price{
+	width: 100%;
+}
+.courses{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin: 3.8% 0 4%;
+}
+.courses_title{
+	text-transform: uppercase;
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 48px;
+    margin: 0 0 0 1%;
+}
+.courses_wrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin: 2.5% 0 0 1.3%;
+    width: 96.5%;
+}
+.cours{
+	width: 31.7%;
+	border-radius: 3%;
+	overflow: hidden;
+	box-shadow: 0 0 4px 4px #D8D8D8;
+}
+.cours_image_uno, .cours_image_dos, .cours_image_tres{
+	width: 100%;
+}
+.cours_image_unopadding, .cours_image_dospadding, .cours_image_trespadding{
+	padding-bottom: 63%;
+}
+.cours_image_uno{
+	background: url(../img/uno_nails.jpg) no-repeat center center;
+	background-size: contain;
+}
+.cours_image_dos{
+	background: url(../img/dos_nails.jpg) no-repeat center center;
+	background-size: contain;
+}
+.cours_image_tres{
+	background: url(../img/tres_nails.jpg) no-repeat center center;
+	background-size: contain;
+}
+.cours_name{
+	background: #333333;	
+	color: #F1F1F1;
+	width: 100%;
+	padding: 3% 0;
+	text-align: center;
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 16px;
+	line-height: 18px;
+	letter-spacing: 1px;	
+	text-transform: uppercase;
+}
+.cours_master{
+	background: #F4F4F6;
+	width: 100%;
+}
+.cours_master_wrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;	
+    padding: 5% 0 4% 7%;
+	width: 100%;
+}
+.cours_master_wrap_photo_uno, .cours_master_wrap_photo_dos, .cours_master_wrap_photo_tres{
+	width: 16%;
+	border-radius: 50%;
+}
+.cours_master_wrap_photo_unopadding, .cours_master_wrap_photo_dospadding, .cours_master_wrap_photo_trespadding{
+	padding-bottom: 100%;
+}
+.cours_master_wrap_photo_uno{
+	background: url(../img/uno_woman.png) no-repeat center center;
+	background-size: contain;
+}
+.cours_master_wrap_photo_dos{
+	background: url(../img/dos_woman.png) no-repeat center center;
+	background-size: contain;
+}
+.cours_master_wrap_photo_tres{
+	background: url(../img/tres_woman.png) no-repeat center center;
+	background-size: contain;
+}
+.cours_master_wrap_text{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin: 0 27% 0 0;
+}
+.cours_master_wrap_text_one, .cours_master_wrap_text_two{
+	line-height: 24px;	
+	text-transform: uppercase;
+}
+.cours_master_wrap_text_one{
+	font-family: 'PTSans Bold', sans-serif;
+	color: #333333;
+	font-size: 22px;
+	letter-spacing: 1px;
+}
+.cours_master_wrap_text_two{
+	font-family: 'PTSans Regular', sans-serif;
+	color: #9D9D9F;
+}
+.cost{
+	background: #fff;	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 4.5%;
+}
+.cost_dates{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	width: 48%;
+}
+.cost_dates_mini{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	width: 100%;
+}
+.cost_dates_image_calendar, .cost_dates_image_clock{
+	width: 8%;
+}
+.cost_dates_image_calendarpadding, .cost_dates_image_clockpadding{
+	padding-bottom: 100%;
+}
+.cost_dates_image_calendar{
+	background: url(../img/calendar.png) no-repeat center center;
+	background-size: contain;
+}
+.cost_dates_image_clock{
+	background: url(../img/clock.png) no-repeat center center;
+	background-size: contain;
+}
+.cost_dates_text{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 80%;
+	margin: 0 0 0 3%;
+}
+.cost_dates_nearest, .cost_dates_number{
+	color: #9D9D9D;
+	font-family: 'PTSans Regular', sans-serif;
+	font-size: 14px;   /* тут 16 пикселей в ПСД-макете */
+	line-height: 20px;	
+}
+.cost_numero{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	width: 48%;
+}
+.cost_numero_rate{
+	color: #DE0063;
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 40px;
+	letter-spacing: 0.7px;
+}
+.cost_numero_part{
+	color: #9D9D9D;
+	font-family: 'PTSans Regular', sans-serif;
+	font-size: 16px;
+	line-height: 20px;	
+}
+.mas{
+	background: #DE0065;
+	width: 100%;
+	padding: 3% 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: background .3s;
+}
+.mas:hover{
+	background: #323334;
+}
+.mas_text{
+	background: inherit;
+	color: #fff;
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 18px;	
+	text-transform: uppercase;
+}
+.mas_image{
+	background: url(../img/frog.png) no-repeat center center;
+	background-size: contain;
+	width: 6%;
+	margin: 0 0 0 3%;
+}
+.mas_imagepadding{
+	padding-bottom: 100%;
+}
+
+
+/*////////////////////////// ФОРМА ////////////////////////////*/
+
+.city{
+	background: url(../img/city.jpg) no-repeat center center;
+	background-size: cover;
+	width: 100%;
+}
+.city_wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	position: relative;
+}
+.city_wrapper_padding_margin{
+	width: 100%;
+}
+/*////////////левый (с преймуществами) блок//////////////*/
+.city_text{
+	width: 43%;
+    margin: 6.2% 0 0 0;
+}
+.city_text_best{
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'PTSans Regular', sans-serif;
+    letter-spacing: 1px;
+	font-size: 44px;
+	line-height: 54px;
+	margin: 0 0 0 3.8%;
+}
+.city_text_best span{
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 60px;
+}
+.city_text_benefits{
+	width: 88%;
+	margin: 3% 0 19% 2.9%;
+}
+.city_text_benefits_wrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	margin: 7% 0 0 0;
+}
+.city_text_benefits_wrap_first{
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 49%;
+}
+.city_text_benefits_wrap_first_big{
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 90px;
+	line-height: 60px;
+	color: #DE0065;
+}
+.city_text_benefits_wrap_first_little{
+	font-family: 'PTSans Regular', sans-serif;
+	font-size: 16px;
+	color: #E6E6E6;
+	margin: 7.5% 0 0 0;
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+/*//////////////правый (малиновый) блок////////////////*/
+.city_crimson{
+	width: 56.5%;
+	height: 100%;
+	background: #DF017C;
+	transform: skew(-10deg);
+	display: flex;
+	flex-direction: column;
+    justify-content: flex-start;
+	align-items: center;
+    position: absolute;
+    top: 0;
+    right: -3.5%;
+}
+.city_crimson_form{
+	transform: skew(10deg);
+	width: 69.5%;
+    margin: 13% 0 0 3%;
+}
+.city_crimson_form_title{
+	color: #fff;
+	font-family: 'PTSans Regular', sans-serif;
+	font-size: 30px;
+	text-align: left;
+    width: 100%;
+	margin: 0 0 3%;
+}
+.city_crimson_form_title span{
+	font-family: 'PTSans Bold', sans-serif;	
+}
+.city_crimson_form input{
+	width: 100%;
+	padding: 2.9%;
+	border: none;
+	box-shadow: none;
+	font-family: 'PTSans Regular', sans-serif;
+	font-size: 16px;
+	color: grey;
+}
+
+#about{
+	padding: 2% 3% 12.5% 3%;
+}
+
+.city_crimson_form input:focus{
+	outline: 0;
+}
+
+.city_crimson_form button{
+	display: block;
+	width: 51.4%;
+	background: #fff;
+	color: #DF017C;
+	border: none;
+	box-shadow: none;
+	border-radius: 25px;
+    padding: 2.3% 0;
+    margin: 8% auto 0;
+	text-transform: uppercase;
+	font-family: 'PTSans Bold', sans-serif;	
+	font-size: 20px;
+	transition: background .3s;
+}
+.city_crimson_form button{
+	outline: 0;				/* убираем рамку при нажатии */
+    outline-offset: 0;		/* убираем рамку при нажатии */
+}
+.city_crimson_form button:hover{
+	background: #323334;
+	color: #fff;
+}
+
+
+
+/*//////////////валидация формы////////////////*/
+
+.info {
+        width: 100%;
+        text-align: left;
+        padding: 5px;
+        font-size: 16px;
+        color: #fff;
+        position: relative;
+        opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+}
+.error {
+        background: #f60000;
+}
+
+
+
+
+
+
+/*
+.hidform{
+	display: block;
+	background: black;
+	color: white;
+	width: 80%;
+	align-self: flex-start;
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*////////////////////////// ПРЕПОДЫ ////////////////////////////*/
+
+.teachers{
+	background: #fff;
+	width: 100%;
+}
+.teachers_wrap{
+	width: 100%;
+}
+.teachers_wrap_title{
+	text-transform: uppercase;
+	color: #000;
+	font-size: 48px;
+	font-family: 'PTSans Bold', sans-serif;
+    margin: 3.5% 0 2.4% 0.3%;
+    text-align: center;
+}
+.teachers_wrap_blocksWrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+	padding: 0 0.8% 0 2%;
+}
+.teachers_wrap_blocksWrapper_block{
+	background: #F4F4F6;
+	width: 32%;
+	padding: 1% 1.2% 0;
+	box-shadow: 0 0 2px 2px #EBEBEB;
+}
+.teachers_wrap_blocksWrapper_block_header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+    padding: 0 0 0 1%;
+}
+.teachers_wrap_blocksWrapper_block_header_lines{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 31%
+}
+.teachers_wrap_blocksWrapper_block_header_lines_line{
+	width: 100%;
+	height: 1px;
+	margin: 2px 0;
+	background: #DE0065;
+}
+.teachers_wrap_blocksWrapper_block_header_face{
+    width: 41%;
+	border-radius: 50%;
+}
+.teachers_wrap_blocksWrapper_block_header_facepadding{
+	padding-bottom: 88%;
+}
+.uno_teacher{
+	background: url(../img/uno_teacher.png) no-repeat center center;
+	background-size: contain;
+}
+.dos_teacher{
+	background: url(../img/dos_teacher.png) no-repeat center center;
+	background-size: contain;
+}
+.tres_teacher{
+	background: url(../img/tres_teacher.png) no-repeat center center;
+	background-size: contain;
+}
+.teachers_wrap_blocksWrapper_block_name, .teachers_wrap_blocksWrapper_block_rank, .teachers_wrap_blocksWrapper_block_description{
+	text-align: center;
+}
+.teachers_wrap_blocksWrapper_block_name{
+	color: #333333;
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 22px;
+	letter-spacing: 1px;
+}
+.teachers_wrap_blocksWrapper_block_rank{
+	color: #9D9D9D;
+	font-family: 'PTSans Regular', sans-serif;
+	margin: 2% 0 0 0;
+	text-transform: uppercase;
+	font-size: 12px;
+}
+.teachers_wrap_blocksWrapper_block_description{
+	color: #333333;
+	font-family: 'PTSans Regular', sans-serif;
+	margin: 7% 0 0 0;
+	font-size: 12px;
+	line-height: 17px;
+}
+.teachers_wrap_blocksWrapper_block_footer{
+	width: 100%;
+    margin: 9% 0 4.5% 0;
+}
+.teachers_wrap_blocksWrapper_block_footer_storey{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+    margin: 0 0 4% 0;
+}
+.teachers_wrap_blocksWrapper_block_footer_storey_calendar{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 28%;
+}
+.teachers_wrap_blocksWrapper_block_footer_storey_calendar_imaage{
+	background: url(../img/calendar.png) no-repeat center center;
+	background-size: contain;
+	width: 18%;
+	padding-bottom: 18%;
+}
+.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 70%;
+}
+.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text_time, .teachers_wrap_blocksWrapper_block_footer_storey_calendar_text_date{
+	font-size: 11px;
+	color: #A9A9AB;
+	font-family: 'PTSans Regular', sans-serif;
+}
+.teachers_wrap_blocksWrapper_block_footer_storey_oneday{
+	font-size: 11px;
+	color: #A9A9AB;
+	font-family: 'PTSans Regular', sans-serif;
+	text-transform: uppercase;
+	text-align: right;
+	width: 65%;
+}
+.teachers_wrap_pressbutton{
+	text-transform: uppercase;
+	color: #fff;
+	background: #DE0065;
+	border-radius: 25px;
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 20px;
+	padding: 1.1% 0;
+	text-align: center;
+	width: 20.2%;
+    margin: 3% auto 3.5%;
+	cursor: pointer;
+	transition: background .3s;
+}
+.teachers_wrap_pressbutton:hover{
+	background: #323334;
+}
+
+
+
+/*////////////////////////// ОТЗЫВЫ ////////////////////////////*/
+
+.reviews{
+	width: 100%;
+	background: #F4F4F6;
+}
+.reviews_wrap{
+	width: 100%;
+	padding: 4% 0 0;
+}
+.reviews_wrap_title{
+	text-transform: uppercase;
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 48px;
+	color: #333333;
+	margin: 0 0 2.5% 1%;
+	text-align: center;
+}
+.reviews_wrap_wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 100%;
+    padding: 0 1.5% 4.5% 2.5%;
+}
+.reviews_wrap_wrapper_fortwo{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	width: 49%;
+}
+.reviews_wrap_wrapper_block{
+	background: #fff;
+	width: 48%;
+	padding: 2% 1%;
+	position: relative;
+}
+.reviews_wrap_wrapper_block_header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+    align-items: center;
+	width: 100%;
+	padding: 3% 0 0;
+}
+.reviews_wrap_wrapper_block_header_image{
+    width: 30%;
+    border-radius: 50%;
+    margin: 0 0 0 2.2%;
+}
+.reviews_wrap_wrapper_block_header_imagepadding{
+	padding-bottom: 80%;
+}
+.reviews_uno{
+	background: url(../img/uno_comment.png) no-repeat center center;
+	background-size: contain;
+}
+.reviews_dos{
+	background: url(../img/dos_comment.png) no-repeat center center;
+	background-size: contain;
+}
+.reviews_tres{
+	background: url(../img/tres_comment.png) no-repeat center center;
+	background-size: contain;
+}
+.reviews_cuatro{
+	background: url(../img/cuatro_comment.png) no-repeat center center;
+	background-size: contain;
+}
+.reviews_wrap_wrapper_block_header_title{
+	width: 61%;
+}
+.reviews_wrap_wrapper_block_header_title_name, .reviews_wrap_wrapper_block_header_title_course{
+	text-transform: uppercase;
+	font-family: 'PTSans Bold', sans-serif;
+}
+.reviews_wrap_wrapper_block_header_title_name{
+	color: #333333;
+	font-size: 16px;
+	margin: 8% 0 0 0;
+}
+.reviews_wrap_wrapper_block_header_title_course{
+	color: #9D9D9D;
+	font-size: 12px;
+	margin: 8% 0 0;
+    line-height: 14px;
+}
+.reviews_wrap_wrapper_block_manicure{
+    text-align: left;
+    margin: 5% 0 -1.5%;
+    font-family: 'PTSans Regular', sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 0 3% 5%;
+}
+.reviews_wrap_wrapper_block_corner{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 6%;
+	padding-bottom: 6%;
+	background: linear-gradient(135deg, #DD0165 0%, #DD0165 49.9%, #F4F4F6 50.1%, #F4F4F6 100%);
+}
+
+
+
+/*////////////////////////// КОНТАКТЫ ////////////////////////////*/
+
+.contacts{
+	width: 100%;
+	background: #3A3A3A;
+}
+.contacts_wrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 100%;
+	padding: 3% 0 3%;
+}
+.contacts_wrap_logotip{
+	background: url(../img/footer_logotip.png) no-repeat center center;
+	background-size: contain;
+    width: 17%;
+    margin: 0 0 0 1.6%;
+}
+.contacts_wrap_logotippadding{
+	padding-bottom: 44%;
+}
+.contacts_wrap_phones_padding_margin{
+	margin: 0 0 3.4% 5.2%;
+}
+.contacts_wrap_phones{
+	width: 100%;
+}
+.contacts_wrap_phones_tel, .contacts_wrap_phones a, .contacts_wrap_phones_callcentr, .contacts_wrap_score_ours, .contacts_wrap_score_address, .contacts_wrap_post_electric, .contacts_wrap_post a{
+	font-size: 14px;
+	color: #F6F6F6;
+	font-family: 'PTSans Bold', sans-serif;
+}
+.contacts_wrap_phones_tel{
+    margin: 0 0 5% 0;
+}
+.contacts_wrap_phones a, .contacts_wrap_post a{
+	text-decoration: none;
+	font-family: 'PTSans Regular', sans-serif;
+	line-height: 17px;
+	transition: color .3s;
+}
+.contacts_wrap_phones a:hover, .contacts_wrap_post a:hover{
+	color: #dd066d;
+}
+.contacts_wrap_phones_callcentr{
+	margin: 5% 0 0 0;
+}
+.contacts_wrap_score_padding_margin{
+	width: 25%;
+	margin: 0 0 3.4% 1.4%;
+}
+.contacts_wrap_score{
+	width: 100%;
+}
+.contacts_wrap_score_ours{
+	margin: 0 0 5% 0;
+}
+.contacts_wrap_score_address{
+	font-family: 'PTSans Regular', sans-serif;
+	line-height: 17px;
+}
+.contacts_wrap_post_padding_margin{
+	margin: 0 0 3.4% 1.2%;
+}
+.contacts_wrap_post_electric{
+	margin: 0 0 9.5% 0;
+}
+
+
+
+
+/*////////////////////////// ФУТЕР ////////////////////////////*/
+
+footer{
+	width: 100%;
+	background: #333333;
+	margin: -0.1% 0 0 0;
+}
+.footer_wrap{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+    align-items: flex-start;
+	width: 100%;
+	padding: 0;
+}
+.footer_wrap_years, .footer_wrap a{
+	font-family: 'PTSans Bold', sans-serif;
+	font-size: 14px;
+	line-height: 90px;
+	color: #fff;
+	text-decoration: none;
+}
+.footer_wrap_years{
+	margin: 0 0 0 1.4%;
+}
+.footer_wrap a{
+	margin: 0;
+}
+.footer_wrap a span{
+	color: #DE0266;
+}
+
+
+
+
+/* --------------------- A-D-A-P-T-I-V ------------------------ */
+
+@media (max-width: 1600px){  
+	.header {
+	    padding: 0 3%;
+	}
+}
+
+@media (max-width: 1400px){  
+	.workZone{
+		width: 90%; 			/* ------- перевод рабочей зоны в % ------- */
+	}
+
+	.courses_title {
+    	font-size: 44px;
+	}
+	.courses_wrap {
+    	margin: 2.5% 0 0 0;
+    	width: 100%;
+	}
+	.cours_master_wrap {
+		justify-content: center;
+	    padding: 5% 7%;
+	}
+	.cours_master_wrap_photo_uno, .cours_master_wrap_photo_dos, .cours_master_wrap_photo_tres {
+	    width: 22%;
+	    padding-bottom: 22%;
+	}
+	.cours_master_wrap_text {
+	    margin: 0 0 0 4%;
+	}
+	.cours_master_wrap_text_one {
+	    font-size: 20px;
+	}
+	.cost_numero_rate {
+	    font-size: 33px;
+	}
+	.cost_numero_part {
+	    margin: 2% 0 0 0;
+	}
+
+	.city {
+	    overflow: hidden;
+	}
+	.city_text {
+	    width: 50%;
+	}
+	.city_text_best {
+	    font-size: 40px;
+	    line-height: 50px;
+	}
+	.city_text_best span {
+	    font-size: 55px;
+	}
+	.city_text_benefits {
+	    width: 100%;
+	}
+	.city_text_benefits_wrap_first_big {
+	    font-size: 80px;
+	    line-height: 55px;
+	}
+	.city_text_benefits_wrap_first {
+	    width: 230px;
+	}
+	.tudun{
+	    margin: 0 4% 0 0%;
+	}
+	.city_crimson {
+	    width: 50%;
+	}
+	.city_crimson_form {
+	    width: 75%;
+	    margin: 21% 0 0 0;
+	}
+	.city_crimson_form_title {
+	    font-size: 25px;
+	}
+
+	.teachers_wrap_title {
+	    font-size: 44px;
+	}
+	.teachers_wrap_blocksWrapper {
+	    padding: 0 0 0 0;
+	}
+	.teachers_wrap_blocksWrapper_block_header {
+	    padding: 6% 0 4% 0;
+	}
+	.teachers_wrap_blocksWrapper_block_header_face {
+	    padding-bottom: 41%;
+	}
+	.teachers_wrap_blocksWrapper_block_header_lines {
+	    width: 27%;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar {
+	    width: 31%;
+	}
+	.teachers_wrap_pressbutton {
+	    width: 21%;
+	}
+
+	.reviews_wrap_title {
+	    font-size: 44px;
+	}
+	.reviews_wrap_wrapper_block_header_image {
+	    width: 35%;
+	    padding-bottom: 35%;
+	}
+	.reviews_wrap_wrapper_block_header_title {
+	    width: 52%;
+	}
+	.reviews_wrap_wrapper_block_manicure {
+	    margin: 5% 0 3%;
+	}
+	.reviews_wrap_wrapper_block_corner {
+	    width: 8%;
+	    padding-bottom: 8%;
+	}
+	
+	.contacts_wrap {
+	    padding: 0 0 2%;
+	}
+
+	.footer_wrap a {
+	    margin: 1.6% 1.4% 1.5% 0;
+	} 
+
+}
+
+@media (max-width: 1200px){
+	.main_logotip {
+	    width: 13%;
+	    padding-bottom: 7%;
+	}
+	.navbar {
+	    width: 55%;
+	}
+
+
+	.courses_title {
+	    font-size: 40px;
+	}
+	.cours_name {
+	    padding: 5% 0;
+	}
+	.cours_name_text{
+    	line-height: 20px;
+	}
+	.cours_master_wrap_photo_uno, .cours_master_wrap_photo_dos, .cours_master_wrap_photo_tres {
+	    width: 38%;
+	    padding-bottom: 30%;
+	}
+	.cours_master_wrap_text {
+	    width: 75%;
+	}
+	.cours_master_wrap_text_two {
+	    line-height: 18px;
+	    margin: 2% 0 0 0;
+	}
+	.cost {
+	    flex-direction: column;
+	}
+	.cost_dates {
+	    width: 100%;
+	}
+	.cost_numero {
+	    align-items: center;
+	    width: 100%;
+	    margin: 2% 0 0 0;
+	}
+	.cost_numero_part {
+	    margin: 1% 0 0 0;
+	}
+	.cost_dates_text {
+	    flex-direction: row;
+	    justify-content: flex-start;
+	}
+	.cost_dates_nearest, .cost_dates_number {
+	    line-height: 16px;
+	    margin: 0 0 0 2%;
+	}
+	.cost_dates_image_calendar, .cost_dates_image_clock {
+	    width: 5%;
+	    padding-bottom: 6%;
+	}
+	.mas {
+	    padding: 5% 0;
+	}
+	.mas_image {
+	    width: 9%;
+	}
+
+	.city_text_best {
+	    font-size: 35px;
+	}
+
+	.city_text_best span {
+	    font-size: 45px;
+	}
+	.tudun {
+	    margin: 0 0 0 0;
+	}
+	.city_crimson {
+	    width: 59%;
+	    right: -11.5%;
+	}
+	.city_crimson_form {
+	    width: 76%;
+	    margin: 17% 5% 0 0;
+	}
+	.city_crimson_form button {
+	    width: 59%;
+	}
+	.teachers_wrap_title {
+	    font-size: 40px;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey {
+	    flex-direction: column;
+	    margin: 0 0 6% 0;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar {
+	    width: 100%;
+	    justify-content: flex-start;
+	    align-items: center;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_oneday {
+	    width: 100%;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text {
+	    flex-direction: row;
+	    justify-content: flex-start;
+	    align-items: center;
+	    margin: 1.2% 0 0 0;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text_time, .teachers_wrap_blocksWrapper_block_footer_storey_calendar_text_date {
+	    margin: 0 0 0 4%;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_imaage {
+	    width: 7%;
+	    padding-bottom: 6%;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_oneday {
+	    text-align: left;
+	    margin: 2% 0 0 0;
+	    line-height: 16px;
+	}
+	.teachers_wrap_pressbutton {
+	    width: 28%;
+	    padding: 1.5% 0;
+	    margin: 3% 1% 4.5% 0;
+	}
+
+	.reviews_wrap_title {
+	    font-size: 40px;
+	}
+	.reviews_wrap_wrapper {
+	    padding: 0 0 4.5% 0;
+	}
+	.reviews_wrap_wrapper_block_header {
+	    flex-direction: column;
+	    align-items: center;
+	}
+	.reviews_wrap_wrapper_block_header_image {
+	    width: 50%;
+	    padding-bottom: 50%;
+	    margin: 0 0 0 0;
+	}
+	.reviews_wrap_wrapper_block_header_title {
+	    width: 100%;
+	}
+	.reviews_wrap_wrapper_block_header_title_name {
+	    text-align: center;
+	    margin: 3% 0 0 0;
+	}
+	.reviews_wrap_wrapper_block_header_title_course {
+	    margin: 3% 0 0;
+	    text-align: center;
+	}
+	.reviews_wrap_wrapper_block_manicure {
+	    text-align: center;
+	}
+
+	.contacts_wrap {
+		width: 100%;
+	}
+
+}
+
+@media (max-width: 1000px){  
+	.cours_name {
+	    font-size: 14px;
+    	padding: 5% 4%;
+	}
+	.cours_master_wrap_text {
+	    margin: 0 0 0 2%;
+	}
+	.cours_master_wrap_text_one {
+	    font-size: 18px;
+	}
+	.cost_dates_nearest, .cost_dates_number {
+	    margin: 0 0 0 4%;
+	}
+	.cost_dates_mini {
+	    justify-content: flex-start;
+	}
+	.cost_dates_text {
+	    width: 100%;
+	}
+
+	.city_text_best {
+	    font-size: 30px;
+	}
+	.city_text_best span {
+	    font-size: 40px;
+	}
+	.city_text_benefits_wrap_first_big {
+	    font-size: 70px;
+	}
+	.city_text_benefits_wrap_first_little {
+	    font-size: 14px;
+	}
+	.city_crimson_form_title {
+	    font-size: 22px;
+	}
+	.city_crimson_form {
+	    margin: 19% 5% 0 0;
+	}
+
+
+
+	.teachers_wrap_pressbutton {
+	    width: 30%;
+	}
+	.reviews_wrap_wrapper_block_manicure {
+	    margin: 5% 0 6%;
+	}
+	.reviews_wrap_wrapper_block_corner {
+	    width: 10%;
+	    padding-bottom: 10%;
+	}
+
+}
+
+/* Планшеты */
+@media (max-width: 900px){  
+	.main_logotip {
+	    width: 16%;
+	    padding-bottom: 9%;
+	}
+	.navbar {
+	    width: 63%;
+	}
+
+
+	.courses_wrap {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.cours {
+	    width: 40%;
+	    margin: 0 2% 3%;
+	}
+
+	.city_wrapper {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	}
+	.city_text {
+	    width: 80%;
+	    align-items: center;
+	}
+	.city_text_best {
+	    margin: 0 0 0 0;
+	    text-align: center;
+	    line-height: 40px;
+	}
+	.city_text_benefits {
+		width: 90%;
+	    margin: 0 0 7% 0;
+	}
+	.city_text_benefits_wrap {
+	    margin: 5% 0 0 0;
+	}
+	.city_text_benefits_wrap_first {
+	    width: 44%;
+	}
+	.city_text_benefits_wrap_first_little {
+	    margin: 3% 0 0 0;
+	}
+	.city_text_benefits_wrap_first_big {
+	    text-align: center;
+	}
+	.city_text_benefits_wrap_first_little {
+	    text-align: center;
+	}
+
+	.city_crimson {
+	    transform: skew(0deg);
+	    position: relative;
+	    width: 70%;
+	    right: 0;
+	    border-radius: 3%;
+	    padding: 4%;
+	    margin: 0 0 6% 0;
+	}
+	.city_crimson_form {
+	    width: 100%;
+	    transform: skew(0deg);
+	    margin: 0 0 0 0;
+	}
+	.city_crimson_form_title {
+	    text-align: center;
+	}
+
+
+	.teachers_wrap_title {
+	    font-size: 35px;
+	    margin: 4.5% 0 3.4% 0.3%;
+	}
+	.teachers_wrap_blocksWrapper {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	}
+	.teachers_wrap_blocksWrapper_block {
+	    width: 70%;
+	    padding: 0 3%;
+	    margin: 0 0 3% 0;
+	}
+	.teachers_wrap_blocksWrapper_block_header {
+	    padding: 4% 0 2% 0;
+	}
+	.teachers_wrap_blocksWrapper_block_header_face {
+		width: 34%;
+	    padding-bottom: 34%;
+	}
+	.teachers_wrap_blocksWrapper_block_header_lines {
+	    width: 29%;
+	}
+	.teachers_wrap_blocksWrapper_block_description {
+	    margin: 3% 0 0 0;
+	}
+	.teachers_wrap_blocksWrapper_block_footer {
+	    margin: 3% 0;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey {
+	    margin: 0 0 3% 0;
+	    align-items: center;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar {
+	    justify-content: center;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_imaage {
+	    width: 4%;
+	    padding-bottom: 4%;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text {
+	    width: 30%;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_oneday {
+	    text-align: center;
+	    width: 60%;
+	}
+	.teachers_wrap_pressbutton {
+	    width: 37%;
+	}
+
+	.reviews_wrap_title {
+	    font-size: 35px;
+	}
+	.reviews_wrap_wrapper {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	}
+	.reviews_wrap_wrapper_fortwo {
+	    width: 100%;
+	    margin: 0 0 4% 0;
+	}
+	.reviews_wrap_wrapper_block_header {
+	    flex-direction: row;
+	}
+	.reviews_wrap_wrapper_block_header_image {
+	    width: 90%;
+	    padding-bottom: 32%;
+	}
+	.reviews_wrap_wrapper_block_header_title_name {
+	    text-align: left;
+	}
+	.reviews_wrap_wrapper_block_header_title_course {
+	    text-align: left;
+	}
+	.reviews_wrap_wrapper_block_corner {
+	    width: 6%;
+	    padding-bottom: 6%;
+	}
+
+	.contacts_wrap {
+	    position: relative;
+	    justify-content: space-between;
+	    padding: 0 6% 2%;
+	}
+	.contacts_wrap_logotip {
+	    margin: -2% 0 0 0;
+	    width: 20%;
+    	padding-bottom: 20%;
+	    position: absolute;
+	    left: 50%;
+	    transform: translate(-50%);
+	}
+	.contacts_wrap_phones, .contacts_wrap_score, .contacts_wrap_post {
+	    margin: 18% 0 0 0;
+	}
+	.contacts_wrap_phones_tel, .contacts_wrap_phones a, .contacts_wrap_phones_callcentr, .contacts_wrap_score_ours, .contacts_wrap_score_address, .contacts_wrap_post_electric, .contacts_wrap_post a {
+	    width: 100%;
+	    text-align: center;
+	}
+
+}
+
+/* Планшеты - телефоны */
+@media (max-width: 800px){  
+
+	.gamburger{
+		display: block;
+	}
+	.navbar{
+		display: none;
+	}
+
+	.arrow_right, .arrow_left{
+		width: 8%;
+		padding-bottom: 8%;
+	}
+	.arrow_right{
+		left: 88%;
+	}
+
+
+	.cours {
+	    width: 46%;
+	}
+	.courses_title {
+	    font-size: 35px;
+	}
+	
+
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text {
+	    width: 34%;
+	}
+	.teachers_wrap_pressbutton {
+	    width: 40%;
+	    padding: 2% 0;
+	}
+	.contacts_wrap {
+	    padding: 0 3% 2%;
+	}
+	.contacts_wrap_phones, .contacts_wrap_score, .contacts_wrap_post {
+	    width: 27%;
+	}
+
+}
+
+/* Телефоны */
+@media (max-width: 700px){ 
+
+	.main_logotip {
+	    width: 23%;
+	    padding-bottom: 14%;
+	}
+	.gamburger {
+	    width: 8%;
+	}
+	.concealed_navbar li a{
+		font-size: 17px;
+	}
+	.not_line {
+    	top: -179%;
+	}
+
+	.courses_wrap {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	}
+	.cours {
+	    width: 70%;
+	}
+	.cours_name {
+	    padding: 3% 2%;
+	}
+	.cours_master_wrap {
+	    padding: 2% 7%;
+	}
+	.cours_master_wrap_photo_uno, .cours_master_wrap_photo_dos, .cours_master_wrap_photo_tres {
+	    width: 22%;
+	    padding-bottom: 22%;
+	}
+	.cours_master_wrap_text {
+	    width: 53%;
+	    margin: 0 0 0 3%;
+	}
+	.cost {
+	    padding: 2%;
+	}
+	.cost_dates_mini {
+	    align-items: center;
+	}
+	.cost_dates_text {
+	    margin: 0 0 0 0;
+	    width: 54%;
+	}
+	.cost_dates_image_calendar, .cost_dates_image_clock {
+	    width: 4%;
+	    padding-bottom: 3%;
+	}
+	.cost_dates_mini {
+	    justify-content: center;
+	}
+	.cost_dates_text {
+		flex-direction: column;
+	    justify-content: flex-start;
+	    width: 42%;
+	}
+	.cost_numero {
+	    margin: 1% 0 0 0;
+	}
+	.mas {
+	    padding: 4% 0;
+	}
+	.cours {
+	    margin: 0 0 4% 0;
+	}
+	.neardate{
+		width: 24%;
+	}
+	.fffneardate{
+		flex-direction: row;
+		width: 47%;
+	}
+
+
+	.city_text_benefits_wrap {
+	    margin: 6% 0 0 0;
+	}
+	.city_text_benefits_wrap_first_big {
+	    font-size: 60px;
+	}
+	.city_crimson {
+	    position: relative;
+	    width: 111%;
+	    right: 0;
+	    border-radius: 0;
+	    padding: 7% 14%;
+	    margin: 0 0 0 0;
+	}
+
+	.teachers_wrap_blocksWrapper_block {
+	    width: 80%;
+	    margin: 0 0 5% 0;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_oneday {
+	    width: 78%;
+	}
+	.teachers_wrap_pressbutton {
+		width: 53%;
+	    padding: 3% 0;
+	    margin: 0 1% 6% 0;
+	}
+
+	.reviews_wrap_wrapper_fortwo {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	    margin: 0 0 0 0;
+	}
+	.reviews_wrap_wrapper_block {
+	    width: 80%;
+	    margin: 0 0 4% 0;
+	    padding: 3% 4%;
+	}
+	.reviews_wrap_wrapper_block_header_image {
+	    width: 85%;
+	    padding-bottom: 27%;
+	}
+	.reviews_wrap_wrapper_block_corner {
+	    width: 4%;
+	    padding-bottom: 4%;
+	}
+
+
+	.contacts_wrap {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	}
+	.contacts_wrap_logotip {
+	    margin: 0 0 0 0;
+	    width: 33%;
+	    padding-bottom: 26%;
+	    position: relative;
+	    left: 0;
+	    transform: translate(0);
+	}
+	.contacts_wrap_phones, .contacts_wrap_score, .contacts_wrap_post {
+	    margin: 0 0 5% 0;
+	    width: 80%;
+	    text-align: center;
+	}
+	.contacts_wrap_phones_tel, .contacts_wrap_score_ours, .contacts_wrap_post_electric {
+	    margin: 0 0 3% 0;
+	}
+
+}
+
+@media (max-width: 600px){  
+	
+	.main_logotip {
+	    width: 27%;
+	    padding-bottom: 17%;
+	}
+	.gamburger {
+	    width: 10%;
+	}
+	.not_line {
+	    top: -183%;
+	}
+
+	.courses_title {
+	    font-size: 30px;
+	    margin: 0 0 0 0;
+	}
+	.courses_wrap {
+	    margin: 3% 0 0 0;
+	}
+	.cours {
+	    width: 100%;
+	}
+	.cost_dates_text {
+	    width: 45%;
+	}
+	.fffneardate {
+	    width: 41%;
+	}
+	.neardate {
+	    width: 20%;
+	}
+	.cost_dates_mini {
+	    margin: 1% 0 0 0;
+	}
+	.mas_image {
+	    width: 5%;
+	}
+
+	.city_text {
+	    width: 100%;
+	}
+	.city_text_best {
+	    font-size: 25px;
+	}
+	.city_text_best span {
+	    font-size: 35px;
+	}
+	.city_text_benefits_wrap_first_big {
+	    font-size: 50px;
+	}
+	.city_text_benefits_wrap_first_little {
+	    font-size: 12px;
+	}
+	.city_crimson_form button {
+	    width: 65%;
+	    font-size: 18px;
+	}
+
+	.teachers_wrap_title {
+	    font-size: 30px;
+	}
+	.teachers_wrap_blocksWrapper_block {
+	    width: 100%;
+	}
+
+
+	.reviews_wrap_title {
+	    font-size: 30px;
+	}
+	.reviews_wrap_wrapper_block {
+	    width: 100%;
+	}
+
+	.contacts_wrap_logotip {
+	    width: 36%;
+	    padding-bottom: 28%;
+	}
+
+}
+
+@media (max-width: 500px){  
+	.gamburger {
+	    width: 12%;
+	}
+	.not_line {
+	    top: -172%;
+	}
+
+	.courses_title {
+	    font-size: 25px;
+	}
+	.cours_name_text {
+	    line-height: 16px;
+	    font-size: 13px;
+	}
+	.cours_master_wrap {
+	    padding: 2% 0;
+	}
+	.cours_master_wrap_text {
+	    width: 51%;
+	}
+	.cours_master_wrap_text_one {
+	    font-size: 16px;
+	}
+	.cours_master_wrap_text_two {
+	    font-size: 14px;
+	    margin: 0 0 0 0;
+	}
+	.cours_master_wrap_photo_uno, .cours_master_wrap_photo_dos, .cours_master_wrap_photo_tres {
+	    width: 20%;
+	    padding-bottom: 20%;
+	}
+
+	.cost_dates_text {
+	    width: 100%;
+	}
+	.cost_dates_nearest, .cost_dates_number {
+	    margin: 0 0 0 2%;
+	}
+	.cost_numero_rate {
+	    font-size: 30px;
+	}
+
+	.cost_dates_text {
+	    width: 59%;
+	}
+	.cost_numero_part {
+	    font-size: 14px;
+	    line-height: 15px;
+	}
+	.mas_text {
+	    font-size: 16px;
+	}
+	.fffneardate {
+	    width: 52%;
+	}
+	.cost_dates_nearest, .cost_dates_number {
+	    margin: 0 0 0 4%;
+	}
+	.neardate {
+	    width: 25%;
+	}
+
+
+	.city_text_best {
+	    font-size: 22px;
+	}
+	.city_text_best span {
+	    font-size: 32px;
+	}
+
+	.city_crimson_form input {
+	    font-size: 14px;
+	}
+	.info {
+		font-size: 14px;
+		line-height: 10px;
+	}
+	.city_crimson_form button {
+	    font-size: 16px;
+	}
+
+	.teachers_wrap_title {
+	    font-size: 25px;
+	}
+
+	.teachers_wrap_blocksWrapper_block_header_lines_line {
+	    margin: 1px 0;
+	}
+	.teachers_wrap_blocksWrapper_block_name {
+	    font-size: 18px;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text {
+	    width: 41%;
+	}
+	.teachers_wrap_pressbutton {
+	    font-size: 16px;
+	}
+
+	.reviews_wrap_title {
+	    font-size: 25px;
+	}
+
+	.reviews_wrap_wrapper_block_manicure {
+	    margin: 3% 0 4%;
+	}
+	.reviews_wrap_wrapper_block_corner {
+	    width: 5%;
+	    padding-bottom: 5%;
+	}
+
+	.footer_wrap {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	    padding: 1% 0;
+	}
+	.footer_wrap_years {
+	    margin: 3% 0 0 0;
+	    line-height: 24px;
+	}
+	.footer_wrap a {
+	    margin: 0 0 3% 0;
+	    line-height: 24px;
+	}
+
+}
+
+@media (max-width: 400px){  
+	.main_logotip {
+	    width: 30%;
+	    padding-bottom: 19%;
+	}
+	.gamburger {
+	    width: 13%;
+	}
+	.concealed_navbar li a {
+	    font-size: 16px;
+	    line-height: 20px;
+	}
+	.not_line {
+	    top: -139%;
+	}
+
+	.courses_title {
+	    font-size: 20px;
+     	margin: 1% 0;
+	}
+	.cours_name_text {
+	    line-height: 15px;
+	    font-size: 12px;
+	}
+	.cours_master_wrap_text_one {
+	    font-size: 14px;
+	}
+	.cours_master_wrap_text_two {
+	    font-size: 12px;
+	}
+
+	.mas_text {
+	    font-size: 14px;
+	}
+	.cost_dates_text {
+	    width: 70%;
+	}
+	.fffneardate {
+	    width: 62%;
+	}
+	.neardate {
+	    width: 28%;
+	}
+	.cost_dates_image_calendar, .cost_dates_image_clock {
+	    width: 4%;
+	    padding-bottom: 4%;
+	}
+	.cost_numero_rate {
+	    font-size: 24px;
+	    padding: 2% 0;
+	}
+
+
+	.city_text_benefits_wrap {
+	    flex-direction: column;
+	    justify-content: flex-start;
+	    align-items: center;
+	}
+	.tudun {
+	    margin: 6% 0 0 0;
+	}
+
+	.city_text_best {
+	    font-size: 18px;
+	    line-height: 26px;
+	}
+	.city_text_best span {
+	    font-size: 24px;
+	}
+	.city_text_benefits_wrap_first_big {
+	    font-size: 40px;
+	    line-height: 30px;
+	}
+
+	.city_text_benefits_wrap_first_little {
+	    line-height: 15px;
+	    margin: 8% 0 0 0;
+	}
+
+	.city_crimson_form {
+	    width: 110%;
+	}
+	.city_crimson_form_title {
+	    font-size: 20px;
+	}
+	.city_crimson_form input {
+	    font-size: 12px;
+	}
+	.city_crimson_form button {
+	    font-size: 14px;
+	}
+	.info {
+		font-size: 12px;
+		line-height: 8px;
+	}
+
+	.teachers_wrap_title {
+	    font-size: 22px;
+	    margin: 5% 0 4% 0;
+	}
+	.teachers_wrap_blocksWrapper_block_header_lines {
+	    width: 30%;
+	}
+	.teachers_wrap_blocksWrapper_block_footer_storey_calendar_text {
+	    width: 48%;
+	}
+	.teachers_wrap_pressbutton {
+	    font-size: 14px;
+	}
+.teachers_wrap_blocksWrapper_block_footer_storey_oneday {
+    font-size: 10px;
+    line-height: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	.reviews_wrap_title {
+	    font-size: 20px;
+	    margin: 1% 0 3% 0;
+	}
+	.reviews_wrap_wrapper_block {
+	    margin: 0 0 6% 0;
+	}
+	.reviews_wrap_wrapper_block_header {
+	    flex-direction: column;
+	    align-items: center;
+	}
+	.reviews_wrap_wrapper_block_header_image {
+	    width: 100%;
+	    padding-bottom: 33%;
+	}
+	.reviews_wrap_wrapper_block_header_title_name {
+	    font-size: 14px;
+	    text-align: center;
+	}
+	.reviews_wrap_wrapper_block_header_title_course {
+	    text-align: center;
+	    font-size: 11px;
+	    line-height: 12px;
+	}
+	.reviews_wrap_wrapper_block_manicure {
+	    margin: 3% 0 7%;
+	    font-size: 12px;
+	}
+	.reviews_wrap_wrapper_block_corner {
+	    width: 6%;
+	    padding-bottom: 6%;
+	}
+
+
+	.contacts_wrap_logotip {
+	    width: 45%;
+	    padding-bottom: 34%;
+	}
+	.contacts_wrap_phones, .contacts_wrap_score, .contacts_wrap_post {
+	    margin: 0 0 8% 0;
+	}
+	.contacts_wrap_phones_tel, .contacts_wrap_phones a, .contacts_wrap_phones_callcentr, .contacts_wrap_score_ours, .contacts_wrap_score_address, .contacts_wrap_post_electric, .contacts_wrap_post a {
+	    font-size: 12px;
+	}
+
+	.footer_wrap_years, .footer_wrap a {
+	    font-size: 12px;
+	    line-height: 20px;
+	}
+
+@media (max-width: 320px){  
+
+	.not_line {
+	    top: -145%;
+	}
+
+}
+
+
+
+
+
+
+}
