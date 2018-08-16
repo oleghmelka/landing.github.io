@@ -1,2 +1,2 @@
 # landing.github.io
-landing DEMO
+without mobile adaptation
